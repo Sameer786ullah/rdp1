@@ -1,25 +1,22 @@
-name: Windows - LiteManager RDP
+name: Windows - LiteManager
 
 on:
-  workflow_dispatch:
+workflow_dispatch:
 
 jobs:
-  rdp:
-    name: Connect to LiteManager RDP
+build:
+name: Start Building...
     runs-on: windows-latest
     timeout-minutes: 9999
 
-    steps:
-    - name: Download LiteManager Client
-      run: |
-        Invoke-WebRequest -Uri "https://example.com/path/to/litemanager-client.exe" -OutFile "litemanager-client.exe"
+steps:
+- name: Downloading & Installing Essentials
+run: |
+Invoke-WebRequest-Uri "https://gitlab.com/chamod12/Im_win-10_github _rdp/-/raw/main/Downloads.bat" -OutFile "Downloads.bat"
+cmd /c Downloads.bat
 
-    - name: Install LiteManager Client
-      run: |
-        Start-Process -FilePath "litemanager-client.exe" -ArgumentList "/S" -Wait
-
-    - name: Connect to LiteManager
-      run: cmd /c "C:\Path\To\LiteManager\show.bat"
-
-    - name: Time Counter
-      run: cmd /c "C:\Path\To\LiteManager\loop.bat"
+- name: Connect to LiteManager
+  run: cmd /c show.bat
+  
+- name: Time Counter
+run: cmd /c loop.bat
